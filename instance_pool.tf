@@ -10,8 +10,8 @@ resource "exoscale_instance_pool" "ccpInstancePool" {
   service_offering = "micro"
   disk_size = 10
   key_pair = ""
-
   security_group_ids = [exoscale_security_group.sg.id]
+
   timeouts {
     delete = "10m"
   }
