@@ -6,7 +6,7 @@ resource "exoscale_instance_pool" "ccpInstancePool" {
   zone = var.zone
   name = "ccpInstancePool"
   template_id = data.exoscale_compute_template.ubuntu.id
-  size = 3
+  size = 1
   service_offering = "micro"
   disk_size = 10
   key_pair = ""
@@ -15,6 +15,7 @@ resource "exoscale_instance_pool" "ccpInstancePool" {
   timeouts {
     delete = "10m"
   }
+
 
   user_data = <<EOF
 #!/bin/bash

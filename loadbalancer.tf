@@ -1,7 +1,7 @@
 
 resource "exoscale_nlb" "ccpNLB" {
-  name        = "website"
-  description = "This is the Network Load Balancer for my website"
+  name        = "ccpNLB"
+  description = "This is the Network Load Balancer"
   zone        = var.zone
 }
 
