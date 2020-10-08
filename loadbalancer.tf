@@ -13,13 +13,13 @@ resource "exoscale_nlb_service" "ccpNLBService" {
   instance_pool_id = exoscale_instance_pool.ccpInstancePool.id
   protocol       = "tcp"
   port           = 80
-  target_port    = 80
+  target_port    = 8080
   strategy       = "round-robin"
 
   healthcheck {
     mode     = "http"
-    port     = 80
-    uri      = "/"
+    port     = 8080
+    uri      = "/health"
     interval = 5
     timeout  = 3
     retries  = 1
