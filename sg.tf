@@ -24,5 +24,5 @@ resource "exoscale_security_group_rule" "http" {
   protocol = "TCP"
   cidr = "0.0.0.0/0"
   start_port = 80
-  end_port = 8080
+  end_port = 80
 }
