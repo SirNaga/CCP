@@ -40,7 +40,11 @@ sudo systemctl restart prometheus
 
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
-sudo docker pull emircajlakem/prometheus_service_discovery:latest
+
+git clone https://github.com/SirRacuga/CCP.git
+cd CCP/servicediscovery
+docker build --tag servicediscovery:1.0 .
+
 sudo docker run \
     -d \
     -e EXOSCALE_KEY=${var.exoscale_key} \
@@ -49,6 +53,6 @@ sudo docker run \
     -e EXOSCALE_INSTANCEPOOL_ID=${exoscale_instance_pool.ccpInstancePool.id} \
     -e TARGET_PORT=9100 \
     -v /etc/prometheus:/prometheus \
-    emircajlakem/prometheus_service_discovery
+    servicediscovery:1.0
 EOF
 }

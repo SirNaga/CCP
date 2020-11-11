@@ -2,5 +2,5 @@
 terraform.tfvars
 terraform.tfstate
 terraform.tfstate.backup
-.terraform
-.idea
+.terraform/
+.idea/
