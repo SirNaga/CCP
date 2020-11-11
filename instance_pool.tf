@@ -16,11 +16,10 @@ resource "exoscale_instance_pool" "ccpInstancePool" {
     delete = "10m"
   }
 
-
   user_data = <<EOF
 #!/bin/bash
-set -e
 
+set -e
 apt update
 
 #install docker //exercise way - not recommended
@@ -28,9 +27,15 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 
 #pulls the image and runs it
-sudo docker pull janoszen/http-load-generator
+sudo docker pull janoszen/http-load-generator:latest
 sudo docker run -d --rm -p 80:8080 janoszen/http-load-generator
 
+#exuting the node exporter as suggested in the exercise
+sudo docker run -d -p 9100:9100 \
+  --net="host" \
+  --pid="host" \
+  -v "/:/host:ro,rslave" \
+  quay.io/prometheus/node-exporter \
+  --path.rootfs=/host
 EOF
-
 }
