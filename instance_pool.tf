@@ -27,11 +27,11 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 
 #pulls the image and runs it
-sudo docker pull janoszen/http-load-generator:latest
-sudo docker run -d --rm -p 80:8080 janoszen/http-load-generator
+docker pull janoszen/http-load-generator:latest
+docker run -d --rm -p 80:8080 janoszen/http-load-generator
 
 #exuting the node exporter as suggested in the exercise
-sudo docker run -d -p 9100:9100 \
+docker run -d -p 9100:9100 \
   --net="host" \
   --pid="host" \
   -v "/:/host:ro,rslave" \

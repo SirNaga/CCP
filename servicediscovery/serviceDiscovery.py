@@ -20,10 +20,13 @@ while True:
         instanceIPv4Addresses = list()
 
         for instance in instances:
-                if instance.state == "running" :
+                if instance.state == "running":
                         instanceIPv4Addresses.append("\"" + instance.ipv4_address + ":" + str(targetPort) + "\"")
 
         targetsFile = open("/prometheus/targets.json", "w")
         targetsFile.write(preffix + (", ".join(instanceIPv4Addresses)) + suffix)
         targetsFile.close()
+        targetsFileConfig = open("/srv/service-discovery/config.json", "w")
+        targetsFileConfig.write(preffix + (", ".join(instanceIPv4Addresses)) + suffix)
+        targetsFileConfig.close()
         timer.sleep(10)

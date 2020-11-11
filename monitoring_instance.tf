@@ -13,9 +13,9 @@ set -e
 sudo apt update
 
 #install prometheus and setup files
-sudo apt-get -y install prometheus
+apt-get -y install prometheus
 
-sudo echo "global:
+echo "global:
   scrape_interval: 15s
 scrape_configs:
   - job_name: 'prometheus'
@@ -31,7 +31,7 @@ scrape_configs:
       - files:
           - /etc/prometheus/targets.json
         refresh_interval: 10s" > /etc/prometheus/prometheus.yml;
-sudo systemctl restart prometheus
+systemctl restart prometheus
 #END install prometheus and setup files
 
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -41,7 +41,7 @@ git clone https://github.com/SirRacuga/CCP.git
 cd CCP/servicediscovery
 docker build --tag servicediscovery:1.0 .
 
-sudo docker run \
+docker run \
     -d \
     -e EXOSCALE_KEY=${var.exoscale_key} \
     -e EXOSCALE_SECRET=${var.exoscale_secret} \
