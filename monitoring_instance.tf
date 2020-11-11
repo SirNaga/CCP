@@ -1,6 +1,6 @@
-resource "exoscale_compute" "prometheus" {
+resource "exoscale_compute" "MonitoringInstancePrometheus" {
   zone         = var.zone
-  display_name = "prometheus"
+  display_name = "MonitoringInstancePrometheus"
   template_id  = data.exoscale_compute_template.ubuntu.id
   size         = "Micro"
   disk_size    = 10
@@ -14,11 +14,7 @@ sudo apt update
 
 #install prometheus and setup files
 sudo apt-get -y install prometheus
-sudo echo "[
-  {
-    "targets": [ "localhost:9100" ]
-  }
-]" > /etc/prometheus/targets.json;
+
 sudo echo "global:
   scrape_interval: 15s
 scrape_configs:

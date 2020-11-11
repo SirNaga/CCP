@@ -1,5 +1,5 @@
-import os
 import exoscale
+import os
 import time as timer
 
 
@@ -26,5 +26,4 @@ while True:
         targetsFile = open("/prometheus/targets.json", "w")
         targetsFile.write(preffix + (", ".join(instanceIPv4Addresses)) + suffix)
         targetsFile.close()
-
         timer.sleep(10)
