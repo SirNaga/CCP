@@ -27,7 +27,7 @@ resource "exoscale_security_group_rule" "http" {
   end_port = 80
 }
 
-resource "exoscale_security_group_rule" "prometheus" {
+resource "exoscale_security_group_rule" "monitoringInstancePrometheus" {
   security_group_id = exoscale_security_group.sg.id
   type = "INGRESS"
   protocol = "TCP"
@@ -36,7 +36,7 @@ resource "exoscale_security_group_rule" "prometheus" {
   end_port = 9090
 }
 
-resource "exoscale_security_group_rule" "metrics_exporter" {
+resource "exoscale_security_group_rule" "nodeExporter" {
   security_group_id = exoscale_security_group.sg.id
   type = "INGRESS"
   protocol = "tcp"
