@@ -1,6 +1,8 @@
 import exoscale
 import os
+import signal
 import time as timer
+
 
 #setting enviromental variables
 os.environ["EXOSCALE_API_KEY"] = os.environ["EXOSCALE_KEY"]
@@ -9,7 +11,18 @@ instancePoolId = os.environ['EXOSCALE_INSTANCEPOOL_ID']
 zone = os.environ['EXOSCALE_ZONE']
 targetPort = os.environ['TARGET_PORT']
 
-while True:
+class SignalHandler:
+  termSignal = False
+  def __init__(self):
+    signal.signal(signal.SIGTERM, self.exitProcess)
+
+  def exitProcess(self):
+    self.termSignal = True
+
+
+handler = SignalHandler
+
+while not handler.termSignal:
     # Get Exoscale instance
     exoscaleConnection = exoscale.Exoscale()
     exoscaleZone = exoscaleConnection.compute.get_zone(zone)
